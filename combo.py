@@ -1,30 +1,23 @@
-
 import os
-import shutil
+import docx2txt
+
 path = os.getcwd()
-"""
-files = []
-for file in os.listdir(path):
-    if file.endswith('.txt'):
-        files.append(file)
-print(files)
-"""
-files = ['combined.txt', 'combined2.txt', 'combined3.txt', 'combined4.txt', 'combined5.txt', 'combined6.txt', 'combined7.txt', 'combined8.txt', 'combined9.txt', 'EKScombined.txt', 'GAAcombined.txt', 'MVBcombined.txt']
 
+files = [
+    "AVM_69_m_2021_3_5_S1_Part2_audio.docx",
+    "AVM_69_m_2021_3_5_S2_audio.docx",
+    "AVM_69_m_2021_3_5_S3_audio.docx",
+    "AVM_69_m_2021_3_5_S4_audio.docx",
+    "AVM_69_m_2021_3_5_S5_audio.docx",
+    "AVM_69_m_2021_3_5_S6_audio.docx",
+    "AVM_69_m_2021_3_5_S7_audio.docx",
+    "AVM_69_m_2021_3_5_S8_audio.docx",
+    "AVM_69_m_2021_3_5_S9_audio_News.docx",
+    "AVM_69_m_2021_3_5_S9_audio_SmallTalk.docx",
+]
 
-
-with open('full_corpus.txt','wb') as wfd:
-    for f in files:
-        with open(f,'rb') as fd:
-            shutil.copyfileobj(fd, wfd)
-            wfd.write(b"\n")
-
-KVAS
-with open('full_corpus.txt', 'w') as outfile:
-    for fname in files:
-        with open(fname) as infile:
-            outfile.write(infile.read())
-
-
-    with open("full_corpus.txt", "a") as text_file:
+for f in files:
+    text = docx2txt.process(f)
+    with open("combined.txt", "a") as text_file:
         text_file.write(text)
+        text_file.write("\n\n")
